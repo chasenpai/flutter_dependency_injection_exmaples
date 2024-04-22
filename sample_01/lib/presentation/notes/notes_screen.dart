@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:note/domain/repository/note_repository.dart';
 import 'package:note/domain/uitl/note_order.dart';
 import 'package:note/presentation/add_edit_note/add_edit_note_screen.dart';
+import 'package:note/presentation/add_edit_note/add_edit_note_view_model.dart';
 import 'package:note/presentation/notes/component/note_item.dart';
 import 'package:note/presentation/notes/component/order_section.dart';
 import 'package:note/presentation/notes/notes_event.dart';
@@ -51,9 +53,16 @@ class NotesScreen extends StatelessWidget {
                 onTap: () async {
                   bool? isSaved = await Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => AddEditNoteScreen(
-                        note: note,
-                      ),
+                      builder: (context) {
+                        final repository = context.read<NoteRepository>();
+                        final viewModel = AddEditNoteViewModel(repository);
+                        return ChangeNotifierProvider(
+                          create: (_) => viewModel,
+                          child: AddEditNoteScreen(
+                            note: note,
+                          ),
+                        );
+                      },
                     ),
                   );
                   if(isSaved != null && isSaved) {
@@ -86,7 +95,14 @@ class NotesScreen extends StatelessWidget {
         onPressed: () async {
           bool? isSaved = await Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const AddEditNoteScreen(),
+              builder: (context) {
+                final repository = context.read<NoteRepository>();
+                final viewModel = AddEditNoteViewModel(repository);
+                return ChangeNotifierProvider(
+                  create: (_) => viewModel,
+                  child: const AddEditNoteScreen(),
+                );
+              },
             ),
           );
           if(isSaved != null && isSaved) {
