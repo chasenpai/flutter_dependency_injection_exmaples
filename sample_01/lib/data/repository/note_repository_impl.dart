@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:note/data/data_source/note_db_helper.dart';
 import 'package:note/domain/model/note.dart';
 import 'package:note/domain/repository/note_repository.dart';
 
+@Singleton(as: NoteRepository) //인터페이스 구현 시 타입 지정
 class NoteRepositoryImpl implements NoteRepository {
 
   final NoteDbHelper db;

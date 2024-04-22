@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:note/domain/model/note.dart';
 import 'package:note/domain/repository/note_repository.dart';
 import 'package:note/presentation/add_edit_note/add_edit_note_event.dart';
 import 'package:note/presentation/add_edit_note/add_edit_note_ui_event.dart';
 import 'package:note/ui/colors.dart';
 
+@injectable
 class AddEditNoteViewModel with ChangeNotifier {
   final NoteRepository repository;
 

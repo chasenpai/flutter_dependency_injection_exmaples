@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:note/di/provider_setup.dart';
-import 'package:note/presentation/notes/notes_screen.dart';
+import 'package:note/di/di_setup.dart';
 import 'package:note/router/router.dart';
 import 'package:note/ui/colors.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final providers = await getProviders();
+  await configureDependencies();
   runApp(
-    MultiProvider(
-      providers: providers,
-      child: const MyApp(),
-    ),
+    const MyApp(),
   );
 }
 

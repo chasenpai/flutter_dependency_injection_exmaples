@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:note/domain/model/note.dart';
 import 'package:note/domain/uitl/note_order.dart';
 import 'package:note/domain/uitl/order_type.dart';
@@ -6,6 +7,7 @@ import 'package:note/domain/use_case/use_cases.dart';
 import 'package:note/presentation/notes/notes_event.dart';
 import 'package:note/presentation/notes/notes_state.dart';
 
+@injectable //필요할 때 마다 생성
 class NotesViewModel with ChangeNotifier {
   final UseCases useCases;
 

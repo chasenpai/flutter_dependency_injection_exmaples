@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:note/domain/model/note.dart';
 import 'package:note/domain/repository/note_repository.dart';
 import 'package:note/domain/uitl/note_order.dart';
 
+@singleton
 class GetNotes {
   final NoteRepository repository;
 
