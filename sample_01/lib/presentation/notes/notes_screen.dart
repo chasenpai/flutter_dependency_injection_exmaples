@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:note/domain/repository/note_repository.dart';
 import 'package:note/domain/uitl/note_order.dart';
 import 'package:note/presentation/add_edit_note/add_edit_note_screen.dart';
@@ -51,20 +54,11 @@ class NotesScreen extends StatelessWidget {
                 .map(
                   (note) => GestureDetector(
                 onTap: () async {
-                  bool? isSaved = await Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        final repository = context.read<NoteRepository>();
-                        final viewModel = AddEditNoteViewModel(repository);
-                        return ChangeNotifierProvider(
-                          create: (_) => viewModel,
-                          child: AddEditNoteScreen(
-                            note: note,
-                          ),
-                        );
-                      },
-                    ),
+                  final uri = Uri(
+                    path: '/edit_note',
+                    queryParameters: {'note': jsonEncode(note.toJson()),},
                   );
+                  bool? isSaved = await context.push(uri.toString());
                   if(isSaved != null && isSaved) {
                     viewModel.onEvent(const NotesEvent.loadNotes());
                   }
@@ -93,18 +87,7 @@ class NotesScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          bool? isSaved = await Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                final repository = context.read<NoteRepository>();
-                final viewModel = AddEditNoteViewModel(repository);
-                return ChangeNotifierProvider(
-                  create: (_) => viewModel,
-                  child: const AddEditNoteScreen(),
-                );
-              },
-            ),
-          );
+          bool? isSaved = await context.push('/add_note');
           if(isSaved != null && isSaved) {
             viewModel.onEvent(const NotesEvent.loadNotes());
           }
