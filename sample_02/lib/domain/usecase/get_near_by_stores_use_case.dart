@@ -26,10 +26,13 @@ class GetNearByStoresUseCase {
     final isServiceEnabled = await _locationPermissionHandler.isLocationServiceEnabled();
     //권한 체크
     if(isServiceEnabled) {
-      final permission = await _locationPermissionHandler.checkPermission();
+      var permission = await _locationPermissionHandler.checkPermission();
       if(permission == Permission.denied) {
-        print('거부');
-        return stores;
+        permission = await _locationPermissionHandler.requestPermission();
+        if(permission == Permission.denied) {
+          print('거부');
+          return stores;
+        }
       }
       if(permission == Permission.deniedForever) {
         print('두번 거부');

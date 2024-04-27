@@ -23,7 +23,6 @@ class StoreItem extends StatelessWidget {
         Column(
           children: [
             Text(store.remainStatus,),
-            Text('100개 이상'),
           ],
         ),
       ],

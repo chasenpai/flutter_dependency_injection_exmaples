@@ -39,6 +39,7 @@ class MockStoreRepositoryImpl implements StoreRepository {
   }
 }
 
+@test
 @Singleton(as: LocationRepository)
 class MockLocationRepositoryImpl implements LocationRepository {
 
@@ -48,6 +49,7 @@ class MockLocationRepositoryImpl implements LocationRepository {
   }
 }
 
+@test
 @Singleton(as: LocationPermissionHandler)
 class MockLocationPermissionHandler implements LocationPermissionHandler {
 
