@@ -10,7 +10,7 @@ class GetNearByStoresUseCase {
   final LocationRepository _locationRepository;
   final LocationPermissionHandler _locationPermissionHandler;
 
-  GetNearByStoresUseCase.name({
+  GetNearByStoresUseCase({
     required StoreRepository storeRepository,
     required LocationRepository locationRepository,
     required LocationPermissionHandler locationPermissionHandler,
