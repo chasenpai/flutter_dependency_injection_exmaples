@@ -22,7 +22,9 @@ Store _$StoreFromJson(Map<String, dynamic> json) {
 mixin _$Store {
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get distance => throw _privateConstructorUsedError;
+  num get lat => throw _privateConstructorUsedError;
+  num get lng => throw _privateConstructorUsedError;
+  num get distance => throw _privateConstructorUsedError;
   String get remainStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +38,12 @@ abstract class $StoreCopyWith<$Res> {
       _$StoreCopyWithImpl<$Res, Store>;
   @useResult
   $Res call(
-      {String name, String address, String distance, String remainStatus});
+      {String name,
+      String address,
+      num lat,
+      num lng,
+      num distance,
+      String remainStatus});
 }
 
 /// @nodoc
@@ -54,6 +61,8 @@ class _$StoreCopyWithImpl<$Res, $Val extends Store>
   $Res call({
     Object? name = null,
     Object? address = null,
+    Object? lat = null,
+    Object? lng = null,
     Object? distance = null,
     Object? remainStatus = null,
   }) {
@@ -66,10 +75,18 @@ class _$StoreCopyWithImpl<$Res, $Val extends Store>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as num,
+      lng: null == lng
+          ? _value.lng
+          : lng // ignore: cast_nullable_to_non_nullable
+              as num,
       distance: null == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
       remainStatus: null == remainStatus
           ? _value.remainStatus
           : remainStatus // ignore: cast_nullable_to_non_nullable
@@ -86,7 +103,12 @@ abstract class _$$StoreImplCopyWith<$Res> implements $StoreCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name, String address, String distance, String remainStatus});
+      {String name,
+      String address,
+      num lat,
+      num lng,
+      num distance,
+      String remainStatus});
 }
 
 /// @nodoc
@@ -102,6 +124,8 @@ class __$$StoreImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? address = null,
+    Object? lat = null,
+    Object? lng = null,
     Object? distance = null,
     Object? remainStatus = null,
   }) {
@@ -114,10 +138,18 @@ class __$$StoreImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as num,
+      lng: null == lng
+          ? _value.lng
+          : lng // ignore: cast_nullable_to_non_nullable
+              as num,
       distance: null == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
       remainStatus: null == remainStatus
           ? _value.remainStatus
           : remainStatus // ignore: cast_nullable_to_non_nullable
@@ -132,7 +164,9 @@ class _$StoreImpl implements _Store {
   const _$StoreImpl(
       {required this.name,
       required this.address,
-      required this.distance,
+      required this.lat,
+      required this.lng,
+      this.distance = 0.0,
       required this.remainStatus});
 
   factory _$StoreImpl.fromJson(Map<String, dynamic> json) =>
@@ -143,13 +177,18 @@ class _$StoreImpl implements _Store {
   @override
   final String address;
   @override
-  final String distance;
+  final num lat;
+  @override
+  final num lng;
+  @override
+  @JsonKey()
+  final num distance;
   @override
   final String remainStatus;
 
   @override
   String toString() {
-    return 'Store(name: $name, address: $address, distance: $distance, remainStatus: $remainStatus)';
+    return 'Store(name: $name, address: $address, lat: $lat, lng: $lng, distance: $distance, remainStatus: $remainStatus)';
   }
 
   @override
@@ -159,6 +198,8 @@ class _$StoreImpl implements _Store {
             other is _$StoreImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.address, address) || other.address == address) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lng, lng) || other.lng == lng) &&
             (identical(other.distance, distance) ||
                 other.distance == distance) &&
             (identical(other.remainStatus, remainStatus) ||
@@ -168,7 +209,7 @@ class _$StoreImpl implements _Store {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, address, distance, remainStatus);
+      Object.hash(runtimeType, name, address, lat, lng, distance, remainStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +229,9 @@ abstract class _Store implements Store {
   const factory _Store(
       {required final String name,
       required final String address,
-      required final String distance,
+      required final num lat,
+      required final num lng,
+      final num distance,
       required final String remainStatus}) = _$StoreImpl;
 
   factory _Store.fromJson(Map<String, dynamic> json) = _$StoreImpl.fromJson;
@@ -198,7 +241,11 @@ abstract class _Store implements Store {
   @override
   String get address;
   @override
-  String get distance;
+  num get lat;
+  @override
+  num get lng;
+  @override
+  num get distance;
   @override
   String get remainStatus;
   @override
