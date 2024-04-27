@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:mask/domain/model/location.dart';
 import 'package:mask/domain/model/permission.dart';
 import 'package:mask/domain/model/store.dart';
@@ -5,6 +6,7 @@ import 'package:mask/domain/permission/location_permission_handler.dart';
 import 'package:mask/domain/repository/location_repository.dart';
 import 'package:mask/domain/repository/store_repository.dart';
 
+@singleton
 class GetNearByStoresUseCase {
   final StoreRepository _storeRepository;
   final LocationRepository _locationRepository;

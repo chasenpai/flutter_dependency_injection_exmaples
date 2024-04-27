@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:mask/domain/model/location.dart';
 import 'package:mask/domain/model/permission.dart';
 import 'package:mask/domain/model/store.dart';
@@ -5,6 +6,8 @@ import 'package:mask/domain/permission/location_permission_handler.dart';
 import 'package:mask/domain/repository/location_repository.dart';
 import 'package:mask/domain/repository/store_repository.dart';
 
+@test
+@Singleton(as: StoreRepository)
 class MockStoreRepositoryImpl implements StoreRepository {
 
   @override
@@ -36,6 +39,7 @@ class MockStoreRepositoryImpl implements StoreRepository {
   }
 }
 
+@Singleton(as: LocationRepository)
 class MockLocationRepositoryImpl implements LocationRepository {
 
   @override
@@ -44,6 +48,7 @@ class MockLocationRepositoryImpl implements LocationRepository {
   }
 }
 
+@Singleton(as: LocationPermissionHandler)
 class MockLocationPermissionHandler implements LocationPermissionHandler {
 
   @override
